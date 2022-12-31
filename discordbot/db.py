@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import pandas as pd
 import mysql.connector
 from mysql.connector import Error
 class DB:
@@ -58,20 +57,3 @@ class DB:
             return result
         except Error as err:
             return err
-#con=conect_db()
-#query="CREATE DATABASE IR"
-#create_database(con,query)
-#create_IR_table = "CREATE TABLE IR (id INT,name VARCHAR(40),year INT,month INT,day INT,time VARCHAR(10),start_time VARCHAR(10),end_time VARCHAR(10),content VARCHAR(80));"
-#con=create_db_connection() # データベースに接続
-#delete_table="DROP TABLE IR"
-#con=execute_query(con,delete_table)
-#con=execute_query(con, create_IR_table)
-#insert_data="INSERT INTO IR VALUES(023,'test2',2022,12,22,'03:00','12:00','15:00','作業');"
-#con=execute_query(con,insert_data)
-#query="SELECT * FROM IR;"
-#results=read_query(con,query)
-#for result in results:
-    #print(result)
-#send_query(insert_data)
-#query(insert_data)
-#queryOfread(query)
