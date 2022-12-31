@@ -8,28 +8,8 @@ class DB:
         self.user_password=user_password
         self.user_name=user_name
         self.host_name=host_name
-    def conect_db(self):
-        try:
-            connection = mysql.connector.connect(
-                    host=self.host_name,
-                    user=self.user_name,
-                    passwd=self.user_password
-            )
-            print('接続成功')
-        except Error:
-            print(f'接続失敗{Error}')
-        return connection
-    """
-    def query(connection, query):
-        cursor = connection.cursor()
-        try:
-            cursor.execute(query)
-            connection.commit()
-            print("Query successful")
-        except Error as err:
-            print(f"Error: '{err}'")
-    """
-    def read_query(self,connection, query):
+
+    def read_query(self,connection,query):
         cursor = connection.cursor()
         result = None
         try:
@@ -78,7 +58,6 @@ class DB:
             return result
         except Error as err:
             return err
-    
 #con=conect_db()
 #query="CREATE DATABASE IR"
 #create_database(con,query)

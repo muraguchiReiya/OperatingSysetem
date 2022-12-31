@@ -34,13 +34,11 @@ async def on_message(message):
     reg_res=re.compile(r'^(\d{4})-(\d{4})').search(message.content)
     if(reg_res):
         m = re.match(r'^(\d{4})-(\d{4})', message.content)
-
         now=datetime.now()
         print(now)
         work_time=time(m.group(1),m.group(2))
         query=f"INSERT INTO IR VALUES('{message.author.id}','{message.author.name}',{now.year},{now.month},{now.day},{work_time},{m.group(1)},{m.group(2)},'{message.content[10:]}')"
         print(query)
-        con=db.conect_db()
         con=db.create_db_connection()
         msg=db.execute_query(con,query)
         await message.channel.send(msg)
@@ -48,7 +46,6 @@ async def on_message(message):
         m = re.match(r'^(\d*)月の集計', message.content)
         query=f"SELECT name,SUM(time) FROM IR WHERE month={m.group(1)} GROUP BY name;"
         print(query)
-        con=db.conect_db()
         con=db.create_db_connection()
         results=db.read_query(con,query)
         embed = discord.Embed(title=f"{m.group(1)}月集計結果")
@@ -58,7 +55,6 @@ async def on_message(message):
         await message.channel.send(embed=embed)
     elif(message.content=="テーブル一覧"):
         query="SELECT * FROM IR;"
-        con=db.conect_db()
         con=db.create_db_connection()
         results=db.read_query(con,query)
         embed = discord.Embed(title="IRテーブル")
